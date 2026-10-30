@@ -1,0 +1,61 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+@theme inline {
+  --font-sans: var(--font-geist);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--foreground);
+  --color-popover: var(--card);
+  --color-popover-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--background);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--foreground);
+  --color-muted: var(--secondary);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--secondary);
+  --color-accent-foreground: var(--foreground);
+  --color-destructive: var(--primary);
+  --color-border: var(--border);
+  --color-input: var(--border);
+  --color-ring: var(--primary);
+  --color-track: var(--track);
+  --radius-sm: .375rem;
+  --radius-md: .5rem;
+  --radius-lg: .75rem;
+  --radius-xl: 1rem;
+}
+:root {
+  color-scheme: dark;
+  --background: #131816;
+  --card: #26312d;
+  --foreground: #edf1e9;
+  --primary: #f38b63;
+  --track: #729174;
+  --secondary: color-mix(in srgb, var(--foreground) 6%, var(--background));
+  --muted-foreground: color-mix(in srgb, var(--foreground) 48%, var(--background));
+  --border: color-mix(in srgb, var(--foreground) 11%, var(--background));
+}
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  body { @apply bg-background text-foreground; }
+  button:not(:disabled) { cursor: pointer; }
+  button, a { -webkit-tap-highlight-color: transparent; }
+  :focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; }
+}
+.game-surface { isolation: isolate; }
+.game-surface:focus { outline: none; }
+.game-surface:focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; }
+.game-canvas { display: block; width: 100%; height: 100%; }
+.keycap { display: inline-flex; align-items: center; justify-content: center; min-width: 25px; height: 25px; border: 1px solid var(--border); border-bottom-width: 3px; border-radius: 5px; background: var(--secondary); font: 12px var(--font-geist-mono), monospace; color: var(--foreground); }
+.touch-key { touch-action: none; user-select: none; -webkit-user-select: none; }
+.touch-key:active { background: var(--primary); color: var(--background); }
+.speed-bars { display: flex; gap: 3px; transform: skew(-13deg); }
+.speed-bars span { width: 6px; height: 18px; background: var(--border); border-radius: 1px; }
+.speed-bars span[data-active='true'] { background: var(--primary); }
+@media (pointer: coarse) { .mobile-controls { display: flex; } }
